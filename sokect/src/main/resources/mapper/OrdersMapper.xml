@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzttest.socket.jdbc.dao.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.lzttest.socket.jdbc.entity.Orders" >
+    <result column="id_o" property="idO" jdbcType="INTEGER" />
+    <result column="id_p" property="idP" jdbcType="INTEGER" />
+    <result column="OrderNo" property="orderno" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lzttest.socket.jdbc.entity.Orders" >
+    insert into orders (id_o, id_p, OrderNo
+      )
+    values (#{idO,jdbcType=INTEGER}, #{idP,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lzttest.socket.jdbc.entity.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idO != null" >
+        id_o,
+      </if>
+      <if test="idP != null" >
+        id_p,
+      </if>
+      <if test="orderno != null" >
+        OrderNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idO != null" >
+        #{idO,jdbcType=INTEGER},
+      </if>
+      <if test="idP != null" >
+        #{idP,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
